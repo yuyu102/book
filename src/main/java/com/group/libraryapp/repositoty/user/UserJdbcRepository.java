@@ -2,14 +2,18 @@ package com.group.libraryapp.repositoty.user;
 
 import com.group.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserRepository {
+// Repository를 하니까 콩모양이 생기면서 스프링 빈이 됨.
+// UesrRepository가 스프링 빈으로 됨.
+@Repository
+public class UserJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
