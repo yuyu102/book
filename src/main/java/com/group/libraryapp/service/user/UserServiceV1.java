@@ -24,6 +24,7 @@ public class UserServiceV1 {
         userJdbcRepository.saveUser(request.getName(), request.getAge());
     }
 
+    // Update 기능
     public List<UserResponse> getUsers() {
         return userJdbcRepository.getUsers();
     }
@@ -34,6 +35,7 @@ public class UserServiceV1 {
       userJdbcRepository.updateUserName(request.getName(), request.getId());
     }
 
+    // Delete 기능
     public void deleteUser(String name) {
         if (userJdbcRepository.isUserNotExist(name)) {
             throw new IllegalArgumentException();

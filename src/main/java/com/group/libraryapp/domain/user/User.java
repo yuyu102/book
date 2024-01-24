@@ -3,12 +3,12 @@ package com.group.libraryapp.domain.user;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class User { // 테이블과 맵핑된 개체
 
     @Id //primary key로 간주
     @GeneratedValue(strategy = GenerationType.IDENTITY) // primary key는 자동생성 됨.
     private Long id = null;
-    @Column(nullable = false, length = 20, name = "name") // name varchar(20) // 객체 name과 테이블의 name을 맵핑함. // name 부분이 같으니까 생략가능
+    @Column(nullable = false, length = 20) // name varchar(20) // 객체 name과 테이블의 name을 맵핑함. // name 부분이 같으니까 생략가능
     private String name;
     private Integer age;
 
@@ -41,4 +41,5 @@ public class User {
     public void updateName(String name) {
         this.name = name;
     }
+
 }
