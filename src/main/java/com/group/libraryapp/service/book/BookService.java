@@ -54,10 +54,11 @@ public class BookService {
 
         User user = userRepository.findByName(request.getUserName())
                 .orElseThrow(IllegalArgumentException::new);
+        user.loanBook(book.getName());
 
-
-        // 5. 유저 정보와 책 정보를 기반으로 UserLoanHistory를 저장 // UserLoanHistory는 무조건 false니까 정리
-        userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
+//        위의 한줄로 5번이 처리됨
+//        5. 유저 정보와 책 정보를 기반으로 UserLoanHistory를 저장 // UserLoanHistory는 무조건 false니까 정리
+//        userLoanHistoryRepository.save(new UserLoanHistory(user, book.getName()));
 
     }
 
@@ -66,10 +67,13 @@ public class BookService {
         User user = userRepository.findByName(request.getUserName())
                 .orElseThrow(IllegalArgumentException::new);
 
-        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
-                .orElseThrow(IllegalArgumentException::new);
-        history.doReturn();
-      //  userLoanHistoryRepository.save(history); // 사용 안해도 됨.
+        user.returnBook(request.getBookName());
+        // 밑의 코드가 로직으로 간단해짐.
+
+//        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
+//                .orElseThrow(IllegalArgumentException::new);
+//        history.doReturn();
+        //  userLoanHistoryRepository.save(history); // 사용 안해도 됨.
         // Transactional을 하였기에 영속성이라 감지기능이 있기에 변경을 감지하여 자동으로 업뎃해줌.
 
 
